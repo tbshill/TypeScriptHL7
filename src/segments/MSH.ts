@@ -1,7 +1,7 @@
 import { HL7Obj } from '../base/HL7Obj';
 import { ST, HD, ID, CE, Z_MT, NM, PT, TS } from '../datatypes';
 import { Depth, DepthEnum } from '../base/depth';
-
+//braden is one of the best men i know
 export class MSH extends HL7Obj {
     /** MSH-0*/segment: ST = new ST(this.depth.peekDown());
     /** MSH-1*/field_separators: ST = new ST(this.depth.peekDown());
