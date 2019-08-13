@@ -1,7 +1,6 @@
 import { HL7Obj } from '../base/HL7Obj';
-import { ST, CX, SI, XAD, XTN, TS, IS, NM, ID, CE, XON, XPN, CP, FC, JCC } from '../datatypes';
+import { ST, CX, SI, XAD, XTN, TS, IS, NM, ID, CE, XON, XPN, CP, FC, JCC, DT } from '../datatypes';
 import { Depth, DepthEnum } from '../base/depth';
-import { DT } from '../datatypes/DT';
 // gaurentor
 export class GT1 extends HL7Obj {
     constructor() {
