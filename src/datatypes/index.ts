@@ -16,3 +16,4 @@ export * from './CQ';
 export * from './TQ';
 export * from './DLN';
 export * from './SI';
+export * from './XAD';
