@@ -2,7 +2,7 @@ import { HL7Obj } from '../base/HL7Obj';
 import { ST, TS, IS, XTN, CE, ID, NM, DLN, SI, XAD, CX } from '../datatypes';
 import { Depth, DepthEnum } from '../base/depth';
 import { SIGABRT } from 'constants';
-import { XPN } from '../datatypes/XPN.todo';
+import { XPN } from '../datatypes/XPN';
 
 export class PID extends HL7Obj {
     constructor() {
