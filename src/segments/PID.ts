@@ -1,5 +1,5 @@
 import { HL7Obj } from '../base/HL7Obj';
-import { ST, TS, IS, XTN, CE, ID, NM } from '../datatypes';
+import { ST, TS, IS, XTN, CE, ID, NM, DLN } from '../datatypes';
 import { Depth, DepthEnum } from '../base/depth';
 import { SIGABRT } from 'constants';
 import { XPN } from '../datatypes/XPN.todo';
