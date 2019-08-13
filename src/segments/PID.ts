@@ -1,5 +1,5 @@
 import { HL7Obj } from '../base/HL7Obj';
-import { ST, TS, IS, XTN, CE, ID, NM, DLN } from '../datatypes';
+import { ST, TS, IS, XTN, CE, ID, NM, DLN, SI, XAD, CX } from '../datatypes';
 import { Depth, DepthEnum } from '../base/depth';
 import { SIGABRT } from 'constants';
 import { XPN } from '../datatypes/XPN.todo';
@@ -39,6 +39,41 @@ export class PID extends HL7Obj {
     /** PID-28 */nationality: CE = new CE(this.depth.peekDown());
     /** PID-29 */death_datetime: TS = new TS(this.depth.peekDown());
     /** PID-30 */death_indicator: ID = new ID(this.depth.peekDown());
+
+
+    hl7_obj_array = [
+        this.segment,
+        this.set_id,
+        this.external_id,
+        this.internal_id,
+        this.alternate_id,
+        this.patient_name,
+        this.mothers_maiden_name,
+        this.datetime_of_birth,
+        this.sex,
+        this.patient_alias,
+        this.race,
+        this.patient_address,
+        this.country_code,
+        this.phone_home,
+        this.phone_business,
+        this.primary_language,
+        this.marital_status,
+        this.religion,
+        this.account_number,
+        this.ssn,
+        this.drivers_license,
+        this.mothers_id,
+        this.ethnic_group,
+        this.birth_place,
+        this.multiple_birth_indicator,
+        this.birth_order,
+        this.citizenship,
+        this.veterans_military_status,
+        this.nationality,
+        this.death_datetime,
+        this.death_indicator,
+    ]
 
 
 }
