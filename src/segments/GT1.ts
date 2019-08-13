@@ -1,5 +1,5 @@
 import { HL7Obj } from '../base/HL7Obj';
-import { ST, CX, SI, XAD, XTN, TS, IS, NM, ID, CE, XON, XPN } from '../datatypes';
+import { ST, CX, SI, XAD, XTN, TS, IS, NM, ID, CE, XON, XPN, CP, FC } from '../datatypes';
 import { Depth, DepthEnum } from '../base/depth';
 import { DT } from '../datatypes/DT';
 // gaurentor

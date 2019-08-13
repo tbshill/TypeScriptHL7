@@ -22,3 +22,4 @@ export * from './XON';
 export * from './XPN';
 export * from './CP';
 export * from './MO';
+export * from './FC';
