@@ -20,3 +20,4 @@ export * from './XAD';
 export * from './CX';
 export * from './XON';
 export * from './XPN';
+export * from './CP';
