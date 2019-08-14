@@ -3,6 +3,7 @@ import { HL7Obj } from "../../base/HL7Obj";
 import { TS } from '../TS';
 import { IS } from '../IS';
 import { HD } from '../HD';
+import { CN } from '..';
 
 /**
  * Clinical User - OBR

@@ -25,3 +25,4 @@ export * from './MO';
 export * from './FC';
 export * from './JCC';
 export * from './DT';
+export * from './CN';
