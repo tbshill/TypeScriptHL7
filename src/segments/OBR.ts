@@ -1,5 +1,5 @@
 import { HL7Obj } from '../base/HL7Obj';
-import { ST, SI, EI, CE, ID, TS, CQ, XCN, XTN, TQ, NM, Z_CU, Z_PA, Z_PR, Z_CP } from '../datatypes';
+import { ST, SI, EI, CE, ID, TS, CQ, XCN, XTN, TQ, NM, Z_CU, Z_PA, Z_PR, Z_CP, Z_SS } from '../datatypes';
 
 export class OBR extends HL7Obj {
     /** OBR-0 */segment: ST = new ST(this.depth.peekDown());
@@ -17,7 +17,7 @@ export class OBR extends HL7Obj {
     /** OBR-12 */danger_code: CE = new CE(this.depth.peekDown());
     /** OBR-13 */relevant_clinical_info: ST = new ST(this.depth.peekDown());
     /** OBR-14 */specimen_recieved_datetime: TS = new TS(this.depth.peekDown());
-    /** OBR-15 */specimen_source: CM //TODO:
+    /** OBR-15 */specimen_source: Z_SS = new Z_SS(this.depth.peekDown());
     /** OBR-16 */ordering_provider: XCN = new XCN(this.depth.peekDown());
     /** OBR-17 */order_callback_number: XTN = new XTN(this.depth.peekDown());
     /** OBR-18 */placer_field_1: ST = new ST(this.depth.peekDown());
@@ -81,7 +81,7 @@ export class OBR extends HL7Obj {
         this.transportation_mode,
         this.reason_for_study,
         this.principal_result_interpreter,
-        this.assistant_result_inerpreter,
+        this.assistant_result_interpreter,
         this.technician,
         this.transcriptionist,
         this.scheduled_datetime,
