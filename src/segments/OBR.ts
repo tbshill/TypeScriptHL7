@@ -1,5 +1,5 @@
 import { HL7Obj } from '../base/HL7Obj';
-import { ST, SI, EI, CE, ID, TS, CQ, XCN, XTN, TQ, NM, Z_CU, Z_PA, Z_PR } from '../datatypes';
+import { ST, SI, EI, CE, ID, TS, CQ, XCN, XTN, TQ, NM, Z_CU, Z_PA, Z_PR, Z_CP } from '../datatypes';
 
 export class OBR extends HL7Obj {
     /** OBR-0 */segment: ST = new ST(this.depth.peekDown());
@@ -25,10 +25,10 @@ export class OBR extends HL7Obj {
     /** OBR-20 */filler_field_1: ST = new ST(this.depth.peekDown());
     /** OBR-21 */filler_field_2: ST = new ST(this.depth.peekDown());
     /** OBR-22 */results_change_datetime: TS = new TS(this.depth.peekDown());
-    /** OBR-23 */charge_to_practice: CM // TODO:
+    /** OBR-23 */charge_to_practice: Z_CP = new Z_CP(this.depth.peekDown());
     /** OBR-24 */diagnostic_service_section_id: ID = new ID(this.depth.peekDown());
     /** OBR-25 */result_status: ID = new ID(this.depth.peekDown());
-    /** OBR-26 */parent_result: Z_PR = new Z_PR(this.depth.peekDown()) // TODO:/
+    /** OBR-26 */parent_result: Z_PR = new Z_PR(this.depth.peekDown());
     /** OBR-27 */quantity_timing: TQ = new TQ(this.depth.peekDown());
     /** OBR-28 */result_copies_to: XCN = new XCN(this.depth.peekDown());
     /** OBR-29 */parent: Z_PA = new Z_PA(this.depth.peekDown());
