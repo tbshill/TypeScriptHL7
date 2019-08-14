@@ -1,7 +1,13 @@
 import { HL7Obj } from '../base/HL7Obj';
 import { ST, SI, EI, CE, ID, TS, CQ, XCN, XTN, TQ, NM, Z_CU, Z_PA, Z_PR, Z_CP, Z_SS } from '../datatypes';
+import { Depth, DepthEnum } from '../base/depth';
 
 export class OBR extends HL7Obj {
+
+    constructor() {
+        super(new Depth(DepthEnum.SEGMENT));
+    }
+
     /** OBR-0 */segment: ST = new ST(this.depth.peekDown());
     /** OBR-1 */set_id: SI = new SI(this.depth.peekDown())
     /** OBR-2 */placer_order_number: EI = new EI(this.depth.peekDown());
@@ -46,6 +52,20 @@ export class OBR extends HL7Obj {
     /** OBR-41 */transport_arranged: ID = new ID(this.depth.peekDown());
     /** OBR-42 */esccort_required: ID = new ID(this.depth.peekDown());
     /** OBR-43 */planned_patient_transport_comment: CE = new CE(this.depth.peekDown());
+
+    // I think these are part of a different HL7 version
+
+    /** OBR-44 */procedure_code: ST = new ST(this.depth.peekDown());
+    /** OBR-45 */procedure_code_modifier: ST = new ST(this.depth.peekDown());
+    /** OBR-46 */placer_supplemental_service_info: ST = new ST(this.depth.peekDown());
+    /** OBR-47 */filler_supplemental_service_info: ST = new ST(this.depth.peekDown());
+    /** OBR-48 */medically_necessary_duplicate_procedure_reason: ST = new ST(this.depth.peekDown());
+    /** OBR-49 */result_handling: ST = new ST(this.depth.peekDown());
+    /** OBR-50 */parent_universal_service_id: ST = new ST(this.depth.peekDown());
+    /** OBR-51 */observation_group_id: ST = new ST(this.depth.peekDown());
+    /** OBR-52 */parent_observation_group_id: ST = new ST(this.depth.peekDown());
+    /** OBR-53 */alternate_placer_order_number: ST = new ST(this.depth.peekDown());
+    /** OBR-54 */parent_order: ST = new ST(this.depth.peekDown());
 
     hl7_obj_array = [
         this.segment,
@@ -92,6 +112,17 @@ export class OBR extends HL7Obj {
         this.transport_arranged,
         this.esccort_required,
         this.planned_patient_transport_comment,
+        this.procedure_code,
+        this.procedure_code_modifier,
+        this.placer_supplemental_service_info,
+        this.filler_supplemental_service_info,
+        this.medically_necessary_duplicate_procedure_reason,
+        this.result_handling,
+        this.parent_universal_service_id,
+        this.observation_group_id,
+        this.parent_observation_group_id,
+        this.alternate_placer_order_number,
+        this.parent_order,
     ]
 
 }
