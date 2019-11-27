@@ -16,19 +16,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var HL7Obj_1 = require("../base/HL7Obj");
 var datatypes_1 = require("../datatypes");
 var depth_1 = require("../base/depth");
+//braden is one of the best men i know
 var MSH = /** @class */ (function (_super) {
     __extends(MSH, _super);
     function MSH() {
         var _this = _super.call(this, new depth_1.Depth(depth_1.DepthEnum.SEGMENT)) || this;
         /** MSH-0*/ _this.segment = new datatypes_1.ST(_this.depth.peekDown());
         /** MSH-1*/ _this.field_separators = new datatypes_1.ST(_this.depth.peekDown());
-        /** MSH-2*/ _this.encoding_characters = new datatypes_1.ST(_this.depth.peekDown());
+        // /** MSH-2*/encoding_characters: ST = new ST(this.depth.peekDown());
         /** MSH-3*/ _this.sending_application = new datatypes_1.HD(_this.depth.peekDown());
         /** MSH-4*/ _this.sending_facility = new datatypes_1.HD(_this.depth.peekDown());
         /** MSH-5*/ _this.receiving_application = new datatypes_1.HD(_this.depth.peekDown());
         /** MSH-6*/ _this.receiving_facility = new datatypes_1.HD(_this.depth.peekDown());
         /** MSH-7*/ _this.datetime = new datatypes_1.TS(_this.depth.peekDown());
-        // /** MSH-8*/security: ST = new ST(this.depth.peekDown());
+        /** MSH-8*/ _this.security = new datatypes_1.ST(_this.depth.peekDown());
         /** MSH-9*/ _this.message_type = new datatypes_1.Z_MT(_this.depth.peekDown());
         /** MSH-10*/ _this.message_control_id = new datatypes_1.ST(_this.depth.peekDown());
         /** MSH-11*/ _this.processing_id = new datatypes_1.PT(_this.depth.peekDown());
@@ -43,13 +44,13 @@ var MSH = /** @class */ (function (_super) {
         _this.hl7_obj_array = [
             _this.segment,
             _this.field_separators,
-            _this.encoding_characters,
+            // this.encoding_characters,
             _this.sending_application,
             _this.sending_facility,
             _this.receiving_application,
             _this.receiving_facility,
             _this.datetime,
-            // this.security,
+            _this.security,
             _this.message_type,
             _this.message_control_id,
             _this.processing_id,

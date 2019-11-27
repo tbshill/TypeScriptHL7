@@ -19,7 +19,7 @@ var NM = /** @class */ (function (_super) {
     function NM(depth) {
         var _this = _super.call(this, depth) || this;
         _this.value = new Number();
-        _this.shouldBeBlank = false;
+        _this.shouldBeBlank = true;
         _this.hl7_obj_array = [_this.value];
         return _this;
     }
@@ -34,8 +34,8 @@ var NM = /** @class */ (function (_super) {
     NM.prototype.fromString = function (input) {
         this.shouldBeBlank = !this.isNumericalCharacter(input);
         this.value = Number(input);
-        console.log(this.value);
-        console.log(this.shouldBeBlank);
+        // console.log(this.value);
+        // console.log(this.shouldBeBlank);
     };
     NM.prototype.toString = function () {
         if (this.shouldBeBlank) {

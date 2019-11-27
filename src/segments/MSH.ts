@@ -5,13 +5,13 @@ import { Depth, DepthEnum } from '../base/depth';
 export class MSH extends HL7Obj {
     /** MSH-0*/segment: ST = new ST(this.depth.peekDown());
     /** MSH-1*/field_separators: ST = new ST(this.depth.peekDown());
-    /** MSH-2*/encoding_characters: ST = new ST(this.depth.peekDown());
+    // /** MSH-2*/encoding_characters: ST = new ST(this.depth.peekDown());
     /** MSH-3*/sending_application: HD = new HD(this.depth.peekDown());
     /** MSH-4*/sending_facility: HD = new HD(this.depth.peekDown());
     /** MSH-5*/receiving_application: HD = new HD(this.depth.peekDown());
     /** MSH-6*/receiving_facility: HD = new HD(this.depth.peekDown());
     /** MSH-7*/datetime: TS = new TS(this.depth.peekDown());
-    // /** MSH-8*/security: ST = new ST(this.depth.peekDown());
+    /** MSH-8*/security: ST = new ST(this.depth.peekDown());
     /** MSH-9*/message_type: Z_MT = new Z_MT(this.depth.peekDown());
     /** MSH-10*/message_control_id: ST = new ST(this.depth.peekDown());
     /** MSH-11*/processing_id: PT = new PT(this.depth.peekDown());
@@ -28,13 +28,13 @@ export class MSH extends HL7Obj {
     hl7_obj_array = [
         this.segment,
         this.field_separators,
-        this.encoding_characters,
+        // this.encoding_characters,
         this.sending_application,
         this.sending_facility,
         this.receiving_application,
         this.receiving_facility,
         this.datetime,
-        // this.security,
+        this.security,
         this.message_type,
         this.message_control_id,
         this.processing_id,

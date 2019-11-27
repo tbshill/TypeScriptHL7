@@ -1,33 +1,50 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var mllp_1 = require("./mllp");
-// import { MSH, ORC } from './segments';
-// import { CQ } from './datatypes';
-// import { Depth, DepthEnum } from './base/depth';
-// const test_MSH = "MSH|^~\&|INTELLIGO|MEDICALIS|COREPOINT|HL7|20190809063113||ORM^O01|558108|P|2.5||||||";
-// const test_ORC = "ORC|NW|00849727|00849727||||^^^201908140915^^R||20190812055207|42315237615^Christensen^Ashlee||202549^Newbold^Douglas|^^^1004^^^^^Mammogram|(801)840-2100^(801)840-2139||SCREENING |104646^SLC|||||||3845 W 4700 S^^TAYLORSVILLE^UT^84118^8018402100^8018402139^8018402139"
-// const CQ_test = "^^^201908140915^^R"
-// const msh = new MSH();
-// const orc = new ORC();
-// const cq = new CQ(new Depth(DepthEnum.FEILD));
-// msh.fromString(test_MSH);
-// orc.fromString(test_ORC);
-// cq.fromString(CQ_test);
-// console.log(cq.units.toString());
-// console.log(cq.toString());
-// // console.log(orc.quantity_timing.);
-// // console.log(msh.toString());
-// console.log(orc.toString());
-var mllp = new mllp_1.MLLPServer("0.0.0.0", 6300);
-mllp.on('started', function () {
-    console.log("Started Server on " + mllp.port);
-});
-mllp.on('close', function () {
-    console.log("Stopped");
-});
+var hl7Utils_1 = require("./hl7Utils");
+var mllp_1 = require("./network/mllp");
+var segments_1 = require("./segments");
+// const axios = require('axios')
+var mllp = new mllp_1.MLLPServer('0.0.0.0', 6200);
 mllp.on('mllp', function (event) {
     var message = event.message;
     var socket = event.socket;
-    socket.write(mllp.wrapInMLLP('HI'));
+    try {
+        message = hl7Utils_1.normalizeNewLines(message);
+        var msh = hl7Utils_1.getMSHFromMessage(message);
+        if (msh.message_type.event.value == 'ORM') {
+            console.log("ORM");
+            var segment_strings = message.split('\n');
+            ['MSH| ...', 'PID| ...', 'PV1| ...', 'ORC| ...', 'OBR| ...',];
+            // GET PID
+            var pid_segments_strings = segment_strings.filter(function (segment_string) {
+                var segment_name = hl7Utils_1.getSegmentNameFromString(segment_string);
+                return segment_name === 'PID';
+            });
+            ['PID|...'];
+            var pid = new segments_1.PID();
+            pid.fromString(pid_segments_strings[0]);
+            console.log(pid.toString());
+            // MAP to MODEL
+            var patient_model = {
+                gt_id: pid.external_id.toString(),
+                mrn: pid.internal_id.toString()
+            };
+            console.log(patient_model);
+            // Call API to save to DB
+            axios.post('http://localhost:8888/patient', patient_model)
+                .then(function (result) {
+                console.log(result);
+            }).catch(function (err) {
+                console.error(err);
+            });
+        }
+        var ack = hl7Utils_1.buildACK(message, 'AA');
+        socket.write(hl7Utils_1.wrapInMLLP(ack));
+    }
+    catch (error) {
+        // console.error(error);
+        var ack = hl7Utils_1.buildACK(message, 'AE', error.message);
+        socket.write(hl7Utils_1.wrapInMLLP(ack));
+    }
 });
 mllp.start();

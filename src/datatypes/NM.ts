@@ -4,7 +4,7 @@ import { Depth } from '../base/depth';
 
 export class NM extends HL7Obj {
     value = new Number();
-    private shouldBeBlank = false;
+    private shouldBeBlank = true;
     private isNumericalCharacter(input: String): Boolean {
         if (input !== '') {
             if (input[0] >= '0' && input[0] <= '9') {
@@ -20,8 +20,8 @@ export class NM extends HL7Obj {
     fromString(input: string): void {
         this.shouldBeBlank = !this.isNumericalCharacter(input);
         this.value = Number(input);
-        console.log(this.value);
-        console.log(this.shouldBeBlank);
+        // console.log(this.value);
+        // console.log(this.shouldBeBlank);
     }
     toString() {
         if (this.shouldBeBlank) {

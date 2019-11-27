@@ -11,7 +11,7 @@ export class ST extends HL7Obj {
     fromString(input: string): void {
         this.value = input;
     }
-    toString() {
-        return this.value;
+    toString(): string {
+        return this.value as string;
     }
 }

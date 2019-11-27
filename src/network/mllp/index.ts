@@ -26,7 +26,6 @@ export class MLLPServer extends EventEmitter {
     server: net.Server;
     socket: net.Socket;
 
-
     constructor(host: string, port: number, options?: MLLPOptions) {
         super();
 
@@ -46,8 +45,9 @@ export class MLLPServer extends EventEmitter {
             this.socket = socket
             socket.on('data', (data) => {
 
+
                 let str_data = data.toString();
-                console.log(str_data);
+                // console.log(str_data);
 
                 // Check for the start of the MLLP message
                 if (str_data.indexOf(this.header) > -1) {
@@ -65,8 +65,10 @@ export class MLLPServer extends EventEmitter {
                     // Emit the Data after the trailer
                     // Push the message into the Event Loop
                     // Offload the responsibility of creating an ACK 
+
                     // const context = this.getSummary();
                     // context.socket = socket;
+
                     this.emit('mllp', { message: this.message, socket: socket });
                     this.messageCount += 1;
                 }
@@ -74,7 +76,7 @@ export class MLLPServer extends EventEmitter {
             });
         })
         this.server.on('error', (err) => {
-            console.error(err);
+            // console.error(err);
             this.emit('error', err);
         })
         this.server.on('connection', () => {

@@ -3,6 +3,10 @@ import { ID, ST, NM, CE } from '../datatypes';
 import { Depth, DepthEnum } from '../base/depth';
 
 export class MSA extends HL7Obj {
+    constructor() {
+        super(new Depth(DepthEnum.SEGMENT));
+    }
+
     /** MSA-0 */segment = new ST(new Depth(DepthEnum.FEILD));
     /** MSA-1 */ack_code: ID = new ID(new Depth(DepthEnum.FEILD));
     /** MSA-2 */message_control_id: ST = new ST(new Depth(DepthEnum.FEILD));
@@ -12,6 +16,7 @@ export class MSA extends HL7Obj {
     /** MSA-6 */error_condition: CE = new CE(new Depth(DepthEnum.FEILD));
 
     hl7_obj_array = [
+        this.segment,
         this.ack_code,
         this.message_control_id,
         this.text_message,

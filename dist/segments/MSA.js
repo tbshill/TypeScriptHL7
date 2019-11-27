@@ -19,7 +19,7 @@ var depth_1 = require("../base/depth");
 var MSA = /** @class */ (function (_super) {
     __extends(MSA, _super);
     function MSA() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super.call(this, new depth_1.Depth(depth_1.DepthEnum.SEGMENT)) || this;
         /** MSA-0 */ _this.segment = new datatypes_1.ST(new depth_1.Depth(depth_1.DepthEnum.FEILD));
         /** MSA-1 */ _this.ack_code = new datatypes_1.ID(new depth_1.Depth(depth_1.DepthEnum.FEILD));
         /** MSA-2 */ _this.message_control_id = new datatypes_1.ST(new depth_1.Depth(depth_1.DepthEnum.FEILD));
@@ -28,6 +28,7 @@ var MSA = /** @class */ (function (_super) {
         /** MSA-5 */ _this.delayed_ack_type = new datatypes_1.ST(new depth_1.Depth(depth_1.DepthEnum.FEILD));
         /** MSA-6 */ _this.error_condition = new datatypes_1.CE(new depth_1.Depth(depth_1.DepthEnum.FEILD));
         _this.hl7_obj_array = [
+            _this.segment,
             _this.ack_code,
             _this.message_control_id,
             _this.text_message,
