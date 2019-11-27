@@ -6,71 +6,72 @@ import { MSH, PID } from './segments';
 
 // const axios = require('axios')
 
+async function main() {
 
-const mllp = new MLLPServer('0.0.0.0', 6200);
-mllp.on('mllp', event => {
-    let message = event.message as string;
-    const socket = event.socket as net.Socket;
+    const mllp = new MLLPServer('0.0.0.0', 6200);
+    mllp.listen(() => {
+        console.log('Listening');
+    });
+    mllp.on('mllp', event => {
+        let message = event.message as string;
+        const socket = event.socket as net.Socket;
+
+        try {
+
+            message = normalizeNewLines(message);
+            const msh: MSH = getMSHFromMessage(message);
+
+            const ack = buildACK(message, 'AA');
+            socket.write(wrapInMLLP(ack));
+            console.log('6200:', ack)
+
+
+
+
+        } catch (error) {
+            // console.error(error);
+            const ack = buildACK(message, 'AE', error.message);
+            socket.write(wrapInMLLP(ack));
+        }
+    });
+
+
+    const mllp2 = new MLLPServer('0.0.0.0', 6204);
 
     try {
-
-        message = normalizeNewLines(message);
-        const msh: MSH = getMSHFromMessage(message);
-
-
-        if (msh.message_type.event.value == 'ORM') {
-            console.log("ORM");
-
-            const segment_strings = message.split('\n');
-
-
-            ['MSH| ...', 'PID| ...', 'PV1| ...', 'ORC| ...', 'OBR| ...',]
-
-
-
-            // GET PID
-            const pid_segments_strings = segment_strings.filter(segment_string => {
-                const segment_name = getSegmentNameFromString(segment_string);
-                return segment_name === 'PID';
-            });
-
-            ['PID|...']
-
-            const pid = new PID();
-            pid.fromString(pid_segments_strings[0]);
-            console.log(pid.toString());
-
-            // MAP to MODEL
-            const patient_model = {
-                gt_id: pid.external_id.toString(),
-                mrn: pid.internal_id.toString()
-            }
-
-            console.log(patient_model);
-
-            // Call API to save to DB
-            axios.post('http://localhost:8888/patient', patient_model)
-                .then(result => {
-                    console.log(result);
-                }).catch(err => {
-                    console.error(err);
-                });
-
-
-        }
-
-
-        const ack = buildACK(message, 'AA');
-        socket.write(wrapInMLLP(ack));
-
+        const ack = await mllp2.send("localhost", 8010, 'Hello');
+        console.log(ack);
 
     } catch (error) {
-        // console.error(error);
-        const ack = buildACK(message, 'AE', error.message);
-        socket.write(wrapInMLLP(ack));
+        console.error(error);
     }
+    // mllp2.listen(async () => {
+    //     console.log('Listening2');
+    // });
+    // mllp2.on('mllp', event => {
+    //     let message = event.message as string;
+    //     const socket = event.socket as net.Socket;
+
+    //     try {
+    //         message = normalizeNewLines(message);
+    //         const msh: MSH = getMSHFromMessage(message);
+
+    //         const ack = buildACK(message, 'AA');
+    //         socket.write(wrapInMLLP(ack));
+
+    //         console.log('6204:', ack)
 
 
-})
 
-mllp.start();
+
+    //     } catch (error) {
+    //         const ack = buildACK(message, 'AE', error.message);
+    //         socket.write(wrapInMLLP(ack));
+    //     }
+    // });
+
+
+
+}
+
+main()
