@@ -29,6 +29,7 @@ export class Depth {
     peekDown(): Depth {
         let peek_depth = this.depth + 1
         if (peek_depth > 4) {
+            throw Error('Cannot go below subcomonent');
             peek_depth = 4;
         }
         return new Depth(peek_depth);
@@ -36,6 +37,7 @@ export class Depth {
     peekUp(): Depth {
         let peek_depth = this.depth - 1
         if (peek_depth < 0) {
+            throw Error('Cannot have a negative Depth');
             peek_depth = 0;
         }
         return new Depth(peek_depth);

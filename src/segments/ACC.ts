@@ -1,5 +1,5 @@
 import { HL7Obj } from '../base/HL7Obj';
-import { TS, CE, ST, ID } from '../datatypes';
+import { TS, CE, ST, ID, } from '../datatypes';
 import { Depth, DepthEnum } from '../base/depth';
 
 export class ACC extends HL7Obj {

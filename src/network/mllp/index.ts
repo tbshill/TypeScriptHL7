@@ -1,6 +1,6 @@
 import * as net from "net";
 import { EventEmitter } from 'events';
-import { Socket } from 'dgram';
+// import { Socket } from 'dgram';
 
 interface MLLPOptions {
     header: string;
@@ -76,13 +76,13 @@ export class MLLPServer extends EventEmitter {
             this.emit('error', err);
         })
         this.server.on('connection', (socket) => {
-            // this.clients.push(socket);
             this.emit('connection', socket);
         })
         this.server.on('close', () => {
             this.emit('close');
         })
     }
+
 
     public listen(callback: () => void) {
         console.log("Listenting!")
@@ -91,9 +91,34 @@ export class MLLPServer extends EventEmitter {
         callback()
     }
 
-    public async send(host: string, port: number, data: string): Promise<string> {
+    public stopListening(callback: () => void) {
+        this.server = this.server.close();
+        this.emit('close');
+        callback();
+    }
+
+    public async connect(host: string, port: number): Promise<net.Socket> {
 
         return new Promise((resolve, reject) => {
+            const socket = net.connect({ host, port })
+            socket.on('connect', () => {
+                resolve(socket);
+            })
+        });
+
+    }
+
+    /**
+     * 
+     * @param host Hostname or IP address
+     * @param port Port of destination
+     * @param data data to be sent (Does not need to be wrapped in MLLP)
+     * 
+     * The socket is closed after the data is recieved. 
+     */
+    public async send(host: string, port: number, data: string): Promise<string> {
+
+        return new Promise((resolve: any, reject: any) => {
             const mllp_data = this.wrapInMLLP(data);
 
             const socket = net.connect({ host, port });
@@ -101,15 +126,20 @@ export class MLLPServer extends EventEmitter {
 
             socket.on('connect', () => {
                 socket.write(mllp_data);
-                console.log('CONNECTED')
             })
 
-            socket.on('data', (buffer) => {
+            socket.on('data', (buffer: any) => {
+                socket.end();
                 resolve(buffer.toString());
             });
 
-            socket.on('error', (err) => {
+            socket.on('error', (err: any) => {
+                socket.end();
                 reject(err);
+            })
+
+            socket.on('close', (err) => {
+                console.log.bind(console, 'MLLP Close', err)
             })
 
         });

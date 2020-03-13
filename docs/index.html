@@ -1,0 +1,436 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>typescripthl7</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">typescripthl7</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>typescripthl7</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#typescripthl7" id="typescripthl7" style="color: inherit; text-decoration: none;">
+					<h1>TypeScriptHL7</h1>
+				</a>
+				<p>HL7 2.3 implementation in TypeScript.</p>
+				<ul>
+					<li>Parsing Segments and Datatypes</li>
+					<li>Encoding Segments and Datatypes</li>
+					<li>MLLP networking protocol</li>
+				</ul>
+				<p>Because this is written in typescript there is wonderful auto-completion and intellisense. </p>
+				<a href="#example---parsing" id="example---parsing" style="color: inherit; text-decoration: none;">
+					<h1>Example - Parsing</h1>
+				</a>
+				<pre><code class="language-typescript">
+<span class="hljs-keyword">const</span> test_MSH = <span class="hljs-string">"MSH|^~\&amp;|INTELLIGO|MEDICALIS|COREPOINT|HL7|20190809063113||ORM^O01|558108|P|2.5||||||"</span>;
+<span class="hljs-keyword">const</span> msh = <span class="hljs-keyword">new</span> MSH();
+msh.fromString(test_MSH);
+
+<span class="hljs-built_in">console</span>.log(msh.toString());
+&gt;&gt;&gt; MSH|^~\&amp;|INTELLIGO|MEDICALIS|COREPOINT|HL7|<span class="hljs-number">20190809063113</span>||ORM^O01|<span class="hljs-number">558108</span>|P|<span class="hljs-number">2.5</span>||||||
+
+<span class="hljs-built_in">console</span>.log(msh.message_type.event.value);
+&gt;&gt;&gt; ORM
+</code></pre>
+				<a href="#example---encoding" id="example---encoding" style="color: inherit; text-decoration: none;">
+					<h1>Example - Encoding</h1>
+				</a>
+				<pre><code class="language-typescript">
+<span class="hljs-keyword">const</span> test_MSH = <span class="hljs-string">"MSH|^~\&amp;|INTELLIGO|MEDICALIS|COREPOINT|HL7|20190809063113||ORM^O01|558108|P|2.5||||||"</span>;
+<span class="hljs-keyword">const</span> msh = <span class="hljs-keyword">new</span> MSH();
+msh.fromString(test_MSH);
+
+msh.message_type.event = <span class="hljs-string">"NEW EVENT"</span>
+
+<span class="hljs-built_in">console</span>.log(msh.toString());
+&gt;&gt;&gt; MSH|^~\&amp;|INTELLIGO|MEDICALIS|COREPOINT|HL7|<span class="hljs-number">20190809063113</span>||NEW EVENT^O01|<span class="hljs-number">558108</span>|P|<span class="hljs-number">2.5</span>||||||</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_base_hl7obj_.html">&quot;base/HL7<wbr>Obj&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_base_depth_.html">&quot;base/depth&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_ad_todo_.html">&quot;datatypes/AD.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_cd_todo_.html">&quot;datatypes/CD.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_ce_.html">&quot;datatypes/CE&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_cf_todo_.html">&quot;datatypes/CF.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_ck_todo_.html">&quot;datatypes/CK.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_cm_z_ai_.html">&quot;datatypes/CM/<wbr>Z_<wbr>AI&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_cm_z_cp_.html">&quot;datatypes/CM/<wbr>Z_<wbr>CP&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_cm_z_cu_.html">&quot;datatypes/CM/<wbr>Z_<wbr>CU&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_cm_z_dl_.html">&quot;datatypes/CM/<wbr>Z_<wbr>DL&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_cm_z_mt_.html">&quot;datatypes/CM/<wbr>Z_<wbr>MT&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_cm_z_pa_.html">&quot;datatypes/CM/<wbr>Z_<wbr>PA&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_cm_z_pr_.html">&quot;datatypes/CM/<wbr>Z_<wbr>PR&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_cm_z_ss_.html">&quot;datatypes/CM/<wbr>Z_<wbr>SS&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_cm_index_.html">&quot;datatypes/CM/index&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_cn_.html">&quot;datatypes/CN&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_cp_.html">&quot;datatypes/CP&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_cq_.html">&quot;datatypes/CQ&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_cx_.html">&quot;datatypes/CX&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_dln_.html">&quot;datatypes/DLN&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_dr_todo_.html">&quot;datatypes/DR.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_dt_.html">&quot;datatypes/DT&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_ed_todo_.html">&quot;datatypes/ED.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_ei_.html">&quot;datatypes/EI&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_fc_.html">&quot;datatypes/FC&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_ft_todo_.html">&quot;datatypes/FT.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_hd_.html">&quot;datatypes/HD&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_id_.html">&quot;datatypes/ID&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_is_.html">&quot;datatypes/IS&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_jcc_.html">&quot;datatypes/JCC&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_ma_todo_.html">&quot;datatypes/MA.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_mo_.html">&quot;datatypes/MO&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_na_todo_.html">&quot;datatypes/NA.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_nm_.html">&quot;datatypes/NM&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_pl_.html">&quot;datatypes/PL&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_pn_todo_.html">&quot;datatypes/PN.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_ppn_todo_.html">&quot;datatypes/PPN.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_pt_.html">&quot;datatypes/PT&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_qip_todo_.html">&quot;datatypes/QIP.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_qsc_todo_.html">&quot;datatypes/QSC.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_rcd_todo_.html">&quot;datatypes/RCD.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_ri_todo_.html">&quot;datatypes/RI.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_rp_todo_.html">&quot;datatypes/RP.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_scv_todo_.html">&quot;datatypes/SCV.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_si_.html">&quot;datatypes/SI&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_sn_todo_.html">&quot;datatypes/SN.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_st_.html">&quot;datatypes/ST&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_tm_todo_.html">&quot;datatypes/TM.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_tn_todo_.html">&quot;datatypes/TN.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_tq_.html">&quot;datatypes/TQ&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_ts_.html">&quot;datatypes/TS&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_tx_.html">&quot;datatypes/TX&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_vh_todo_.html">&quot;datatypes/VH.todo&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_xad_.html">&quot;datatypes/XAD&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_xcn_.html">&quot;datatypes/XCN&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_xon_.html">&quot;datatypes/XON&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_xpn_.html">&quot;datatypes/XPN&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_xtn_.html">&quot;datatypes/XTN&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_datatypes_index_.html">&quot;datatypes/index&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_generators_buildworkspace_.html">&quot;generators/<wbr>Build<wbr>Workspace&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_generators_datatypegenerator_.html">&quot;generators/<wbr>Data<wbr>Type<wbr>Generator&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_generators_downloaddatatypedefinitions_.html">&quot;generators/<wbr>Download<wbr>Datatype<wbr>Definitions&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_generators_generatebaseclasses_.html">&quot;generators/<wbr>Generate<wbr>Base<wbr>Classes&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_generators_generateprimativedatatypes_.html">&quot;generators/<wbr>Generate<wbr>Primative<wbr>Datatypes&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_generators_segmentgenerator_.html">&quot;generators/<wbr>Segment<wbr>Generator&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_hl7utils_.html">&quot;hl7<wbr>Utils&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_index_.html">&quot;index&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_messages_orm_.html">&quot;messages/ORM&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_network_engine_.html">&quot;network/engine&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_network_mllp_index_.html">&quot;network/mllp/index&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_network_mllp_v3_.html">&quot;network/mllp/v3&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_segments_acc_.html">&quot;segments/ACC&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_segments_gt1_.html">&quot;segments/GT1&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_segments_in1_.html">&quot;segments/IN1&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_segments_msa_.html">&quot;segments/MSA&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_segments_msh_.html">&quot;segments/MSH&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_segments_obr_.html">&quot;segments/OBR&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_segments_obx_.html">&quot;segments/OBX&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_segments_orc_.html">&quot;segments/ORC&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_segments_pid_.html">&quot;segments/PID&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_segments_pv1_.html">&quot;segments/PV1&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_segments_index_.html">&quot;segments/index&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
