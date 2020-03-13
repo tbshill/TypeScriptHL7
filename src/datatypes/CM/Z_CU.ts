@@ -4,7 +4,6 @@ import { TS } from '../TS';
 import { IS } from '../IS';
 import { HD } from '../HD';
 import { CN } from '..';
-import { ST } from '../ST';
 
 /**
  * Clinical User - OBR
@@ -14,7 +13,7 @@ import { ST } from '../ST';
  *  - transcriptionist
  */
 export class Z_CU extends HL7Obj {
-    name: ST = new ST(this.depth.peekDown()); // TODO: FIX CN
+    name: CN = new CN(this.depth.peekDown());
     start_datetime: TS = new TS(this.depth.peekDown());
     end_datetime: TS = new TS(this.depth.peekDown());
     point_of_care: IS = new IS(this.depth.peekDown());

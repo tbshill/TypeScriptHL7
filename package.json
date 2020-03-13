@@ -1,0 +1,20 @@
+{
+  "name": "typescripthl7",
+  "version": "1.0.0",
+  "description": "HL7 2.3 implementation in TypeScript. - Parsing Segments and Datatypes - Encoding Segments and Datatypes - MLLP networking protocol",
+  "main": "index.js",
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "axios": "^0.19.2",
+    "rxjs": "^6.5.3",
+    "typescript": "^3.5.3"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.21"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

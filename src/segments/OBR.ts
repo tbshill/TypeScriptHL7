@@ -1,5 +1,5 @@
 import { HL7Obj } from '../base/HL7Obj';
-import { ST, SI, EI, CE, ID, TS, CQ, XCN, XTN, TQ, NM, Z_CU, Z_PA, Z_PR, Z_CP, Z_SS } from '../datatypes';
+import { ST, SI, EI, CE, ID, TS, CQ, XCN, XTN, TQ, NM, Z_CU, Z_PA, Z_PR, Z_CP, Z_SS, XPN } from '../datatypes';
 import { Depth, DepthEnum } from '../base/depth';
 
 export class OBR extends HL7Obj {
@@ -40,10 +40,10 @@ export class OBR extends HL7Obj {
     /** OBR-29 */parent: Z_PA = new Z_PA(this.depth.peekDown());
     /** OBR-30 */transportation_mode: ID = new ID(this.depth.peekDown());
     /** OBR-31 */reason_for_study: CE = new CE(this.depth.peekDown());
-    /** OBR-32 */principal_result_interpreter: Z_CU = new Z_CU(this.depth.peekDown())
-    /** OBR-33 */assistant_result_interpreter: Z_CU = new Z_CU(this.depth.peekDown())
-    /** OBR-34 */technician: Z_CU = new Z_CU(this.depth.peekDown())
-    /** OBR-35 */transcriptionist: Z_CU = new Z_CU(this.depth.peekDown())
+    /** OBR-32 */principal_result_interpreter: XCN = new XCN(this.depth.peekDown())
+    /** OBR-33 */assistant_result_interpreter: XCN = new XCN(this.depth.peekDown())
+    /** OBR-34 */technician: XPN = new XPN(this.depth.peekDown())
+    /** OBR-35 */transcriptionist: XPN = new XPN(this.depth.peekDown())
     /** OBR-36 */scheduled_datetime: TS = new TS(this.depth.peekDown());
     /** OBR-37 */number_of_sample_containers: NM = new NM(this.depth.peekDown());
     /** OBR-38 */transport_logistics_of_sample: CE = new CE(this.depth.peekDown());
