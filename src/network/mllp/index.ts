@@ -1,12 +1,15 @@
 import * as net from "net";
 import { EventEmitter } from 'events';
-// import { Socket } from 'dgram';
-
 interface MLLPOptions {
     header: string;
     trailer: string;
     name: string;
 
+}
+
+export interface onMLLPData{
+    message: string;
+    socket: net.Socket;
 }
 
 export class MLLPServer extends EventEmitter {
@@ -82,8 +85,6 @@ export class MLLPServer extends EventEmitter {
             this.emit('close');
         })
     }
-
-
     public listen(callback: () => void) {
         console.log("Listenting!")
         this.server.listen(this.port, this.host);
