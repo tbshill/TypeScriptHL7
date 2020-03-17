@@ -106,6 +106,20 @@ export function encodeDateToHL7String(date: Date): string {
 }
 
 /**
+ * 
+ * @param dateStr String of characters in the HL7 date format. yyyymmddhhmm
+ */
+export function parseDateFromHL7String(dateStr: string): Date {
+    const year = Number(dateStr.substr(0,4));
+    const month = Number(dateStr.substr(4,2));
+    const day = Number(dateStr.substr(6,2));
+    const hour = Number(dateStr.substr(8,2));
+    const minute = Number(dateStr.substr(10,2));
+
+    return new Date(year, month, day, hour, minute);
+}
+
+/**
  * @example
  *   pad(8,"0",4) -> "0008"
  * 
