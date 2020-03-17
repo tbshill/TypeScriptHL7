@@ -4,8 +4,6 @@ import { MLLPServer } from "./network/mllp";
 import * as net from 'net';
 import { MSH, PID } from './segments';
 
-// const axios = require('axios')
-
 async function main() {
 
     const mllp = new MLLPServer('0.0.0.0', 6200);
@@ -45,30 +43,6 @@ async function main() {
     } catch (error) {
         console.error(error);
     }
-    // mllp2.listen(async () => {
-    //     console.log('Listening2');
-    // });
-    // mllp2.on('mllp', event => {
-    //     let message = event.message as string;
-    //     const socket = event.socket as net.Socket;
-
-    //     try {
-    //         message = normalizeNewLines(message);
-    //         const msh: MSH = getMSHFromMessage(message);
-
-    //         const ack = buildACK(message, 'AA');
-    //         socket.write(wrapInMLLP(ack));
-
-    //         console.log('6204:', ack)
-
-
-
-
-    //     } catch (error) {
-    //         const ack = buildACK(message, 'AE', error.message);
-    //         socket.write(wrapInMLLP(ack));
-    //     }
-    // });
 
 
 
