@@ -89,7 +89,6 @@ export function encodeDateToHL7String(date: Date): string {
     // console.log(typeof (date));
     date = new Date(date);
 
-
     if (date.getFullYear() == 1899) {
         return "";
     }
@@ -142,7 +141,11 @@ export function normalizeNewlinesForOBX(paragraphs: string): string {
 }
 
 
-
+/**
+ * 
+ * @param input String that needs to be encoded
+ * Replaces encoded characters with the appropriate escape sequence. 
+ */
 export function encodeSpecialCharacters(input: string): string {
     input = input.replace(/\\/g, '\\E\\'); // Escape Character#
     input = input.replace(/\|/g, '\\F\\'); // Feild Separator
