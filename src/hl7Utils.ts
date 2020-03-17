@@ -7,9 +7,8 @@ import { HL7Obj } from './base/HL7Obj';
  * @returns Replace all \r with \n and multipile \n's in a row with a single \n
  */
 export function normalizeNewLines(input: string): string {
-    let normalized_newlines = input.replace(new RegExp(/\r/, 'g'), '\n');
-    // console.log(typeof (normalizeNewlines))
-    normalized_newlines = normalized_newlines.replace(new RegExp(/\n{2,}/, 'g'), '\n');
+    let normalized_newlines = input.replace(new RegExp(/\n/, 'g'), '\r');
+    normalized_newlines = normalized_newlines.replace(new RegExp(/\r{2,}/, 'g'), '\r');
     return normalized_newlines;
 }
 
@@ -30,7 +29,7 @@ export function getSegmentNameFromString(segment_string: string): string {
  * @returns parsed MSH Segment
  */
 export function getMSHFromMessage(input: string): MSH {
-    const msh_string = input.split('\n')[0];
+    const msh_string = input.split('\r')[0];
     const msh = new MSH();
     msh.fromString(msh_string);
     return msh;
@@ -106,7 +105,14 @@ export function encodeDateToHL7String(date: Date): string {
     return `${year}${month}${day}${hour}${minute}`
 }
 
-
+/**
+ * @example
+ *   pad(8,"0",4) -> "0008"
+ * 
+ * @param input number to padd
+ * @param padString what to pad with
+ * @param length  total length of string
+ */
 function pad(input: number, padString: string, length: number) {
     let str = input.toString();
     while (str.length < length)
