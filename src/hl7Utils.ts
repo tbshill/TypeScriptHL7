@@ -4,7 +4,7 @@ import { HL7Obj } from './base/HL7Obj';
 /**
  * 
  * @param input Input HL7 string
- * @returns Replace all \r with \n and multipile \n's in a row with a single \n
+ * @returns Replace all \n with \r and multipile \r's in a row with a single \r
  */
 export function normalizeNewLines(input: string): string {
     let normalized_newlines = input.replace(new RegExp(/\n/, 'g'), '\r');
@@ -116,7 +116,7 @@ export function parseDateFromHL7String(dateStr: string): Date {
     const hour = Number(dateStr.substr(8,2));
     const minute = Number(dateStr.substr(10,2));
 
-    return new Date(year, month, day, hour, minute);
+    return new Date(year, month-1, day, hour, minute);
 }
 
 /**

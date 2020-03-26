@@ -1,1 +1,1 @@
-export declare function GeneratePrimitiveDatatypes(workspace: string): Promise<{}[]>;
+export declare function GeneratePrimitiveDatatypes(workspace: string): Promise<unknown[]>;

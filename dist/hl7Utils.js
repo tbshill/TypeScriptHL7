@@ -4,7 +4,7 @@ const segments_1 = require("./segments");
 /**
  *
  * @param input Input HL7 string
- * @returns Replace all \r with \n and multipile \n's in a row with a single \n
+ * @returns Replace all \n with \r and multipile \r's in a row with a single \r
  */
 function normalizeNewLines(input) {
     let normalized_newlines = input.replace(new RegExp(/\n/, 'g'), '\r');
@@ -102,7 +102,7 @@ function parseDateFromHL7String(dateStr) {
     const day = Number(dateStr.substr(6, 2));
     const hour = Number(dateStr.substr(8, 2));
     const minute = Number(dateStr.substr(10, 2));
-    return new Date(year, month, day, hour, minute);
+    return new Date(year, month - 1, day, hour, minute);
 }
 exports.parseDateFromHL7String = parseDateFromHL7String;
 /**

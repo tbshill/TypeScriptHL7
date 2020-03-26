@@ -3,7 +3,7 @@ import { HL7Obj } from './base/HL7Obj';
 /**
  *
  * @param input Input HL7 string
- * @returns Replace all \r with \n and multipile \n's in a row with a single \n
+ * @returns Replace all \n with \r and multipile \r's in a row with a single \r
  */
 export declare function normalizeNewLines(input: string): string;
 /**
