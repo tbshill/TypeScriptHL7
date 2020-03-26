@@ -95,7 +95,7 @@
 					<div class="tsd-signature tsd-kind-icon">Depth<wbr>File<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"export enum DepthEnum {SEGMENT,FEILD,COMPONENT,SUB_COMPONENT}export class Depth {static SEGMENT_DELIMETER &#x3D; &#x27;\n&#x27;;static FEILD_DELIMETER &#x3D; &#x27;|&#x27;;static COMPONENT_DELIMETER &#x3D; &#x27;^&#x27;;static SUB_COMPONENT_DELIMETER &#x3D; &#x27;&amp;&#x27;;static REPEAT_DELIMETER &#x3D; &#x27;~&#x27;constructor(private depth: DepthEnum) { }getDelimeter(): string {switch (this.depth) {case DepthEnum.SEGMENT:return Depth.SEGMENT_DELIMETER;case DepthEnum.FEILD:return Depth.FEILD_DELIMETER;case DepthEnum.COMPONENT:return Depth.COMPONENT_DELIMETER;case DepthEnum.SUB_COMPONENT:return Depth.SUB_COMPONENT_DELIMETER}};peekDown(): Depth {let peek_depth &#x3D; this.depth + 1if (peek_depth &gt; 4) {peek_depth &#x3D; 4;}return new Depth(peek_depth);}peekUp(): Depth {let peek_depth &#x3D; this.depth - 1if (peek_depth &lt; 0) {peek_depth &#x3D; 0;}return new Depth(peek_depth);}}"</span><span class="tsd-signature-symbol"> = &#x60;export enum DepthEnum {SEGMENT,FEILD,COMPONENT,SUB_COMPONENT}export class Depth {static SEGMENT_DELIMETER &#x3D; &#x27;\\n&#x27;;static FEILD_DELIMETER &#x3D; &#x27;|&#x27;;static COMPONENT_DELIMETER &#x3D; &#x27;^&#x27;;static SUB_COMPONENT_DELIMETER &#x3D; &#x27;&amp;&#x27;;static REPEAT_DELIMETER &#x3D; &#x27;~&#x27;constructor(private depth: DepthEnum) { }getDelimeter(): string {switch (this.depth) {case DepthEnum.SEGMENT:return Depth.SEGMENT_DELIMETER;case DepthEnum.FEILD:return Depth.FEILD_DELIMETER;case DepthEnum.COMPONENT:return Depth.COMPONENT_DELIMETER;case DepthEnum.SUB_COMPONENT:return Depth.SUB_COMPONENT_DELIMETER}};peekDown(): Depth {let peek_depth &#x3D; this.depth + 1if (peek_depth &gt; 4) {peek_depth &#x3D; 4;}return new Depth(peek_depth);}peekUp(): Depth {let peek_depth &#x3D; this.depth - 1if (peek_depth &lt; 0) {peek_depth &#x3D; 0;}return new Depth(peek_depth);}}&#x60;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/generators/GenerateBaseClasses.ts:4</li>
+							<li>Defined in <a href="https://github.com/tbshill/TypeScriptHL7/blob/ef6ab7c/src/generators/GenerateBaseClasses.ts#L4">src/generators/GenerateBaseClasses.ts:4</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -105,7 +105,7 @@
 					<div class="tsd-signature tsd-kind-icon">HL7<wbr>Obj<wbr>File<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"import { Depth } from &#x27;./depth&#x27;;export class HL7Obj {protected hl7_obj_array: HL7Obj[] &#x3D; [];constructor(protected depth: Depth) { }setDepth(newDepth: Depth): HL7Obj {this.depth &#x3D; newDepth;return this;}fromString(input: String): void {if (input &#x3D;&#x3D; undefined) {this.hl7_obj_array.forEach(value &#x3D;&gt; {value.fromString(&#x27;&#x27;);})}const splits &#x3D; input.split(this.depth.peekDown().getDelimeter());for (let split_index &#x3D; 0; split_index &lt; this.hl7_obj_array.length; split_index++) {this.hl7_obj_array[split_index].setDepth(this.depth.peekDown()).fromString(splits[split_index] || &#x27;&#x27;);}}toString(): String {const stringify &#x3D; this.hl7_obj_array.map(value &#x3D;&gt; {return value.setDepth(this.depth.peekDown()).toString();})let ret &#x3D; stringify.join(this.depth.peekDown().getDelimeter());ret &#x3D; this.removeTrailingDelimeter(ret);return ret;}private removeTrailingDelimeter(input: string): string {const delim &#x3D; this.depth.peekDown().getDelimeter();if (input.length &lt;&#x3D; 0) {return input}if (input[input.length - 1] &#x3D;&#x3D; delim) {return this.removeTrailingDelimeter(input.substring(0, input.length - 1));} else {return input;}}}"</span><span class="tsd-signature-symbol"> = &#x60;import { Depth } from &#x27;./depth&#x27;;export class HL7Obj {protected hl7_obj_array: HL7Obj[] &#x3D; [];constructor(protected depth: Depth) { }setDepth(newDepth: Depth): HL7Obj {this.depth &#x3D; newDepth;return this;}fromString(input: String): void {if (input &#x3D;&#x3D; undefined) {this.hl7_obj_array.forEach(value &#x3D;&gt; {value.fromString(&#x27;&#x27;);})}const splits &#x3D; input.split(this.depth.peekDown().getDelimeter());for (let split_index &#x3D; 0; split_index &lt; this.hl7_obj_array.length; split_index++) {this.hl7_obj_array[split_index].setDepth(this.depth.peekDown()).fromString(splits[split_index] || &#x27;&#x27;);}}toString(): String {const stringify &#x3D; this.hl7_obj_array.map(value &#x3D;&gt; {return value.setDepth(this.depth.peekDown()).toString();})let ret &#x3D; stringify.join(this.depth.peekDown().getDelimeter());ret &#x3D; this.removeTrailingDelimeter(ret);return ret;}private removeTrailingDelimeter(input: string): string {const delim &#x3D; this.depth.peekDown().getDelimeter();if (input.length &lt;&#x3D; 0) {return input}if (input[input.length - 1] &#x3D;&#x3D; delim) {return this.removeTrailingDelimeter(input.substring(0, input.length - 1));} else {return input;}}}&#x60;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/generators/GenerateBaseClasses.ts:50</li>
+							<li>Defined in <a href="https://github.com/tbshill/TypeScriptHL7/blob/ef6ab7c/src/generators/GenerateBaseClasses.ts#L50">src/generators/GenerateBaseClasses.ts:50</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -122,7 +122,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/generators/GenerateBaseClasses.ts:105</li>
+									<li>Defined in <a href="https://github.com/tbshill/TypeScriptHL7/blob/ef6ab7c/src/generators/GenerateBaseClasses.ts#L105">src/generators/GenerateBaseClasses.ts:105</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -145,7 +145,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/generators/GenerateBaseClasses.ts:118</li>
+									<li>Defined in <a href="https://github.com/tbshill/TypeScriptHL7/blob/ef6ab7c/src/generators/GenerateBaseClasses.ts#L118">src/generators/GenerateBaseClasses.ts:118</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>

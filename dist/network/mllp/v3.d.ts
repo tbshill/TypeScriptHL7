@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import * as net from "net";
 import { EventEmitter } from 'events';
 /**
