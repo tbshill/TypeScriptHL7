@@ -56,7 +56,7 @@ export function wrapInMLLP(data: string): string {
  */
 export function buildACK(message: string, ack_code: string, error_message: string = ''): string {
 
-    const msh_string = message.split('\n')[0];
+    const msh_string = message.split('\r')[0];
 
 
     const msh = new MSH();
