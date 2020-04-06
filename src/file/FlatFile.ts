@@ -8,13 +8,17 @@ import fs from 'fs';
  * Streams in an HL7 flat file that does not wrap it's messages in MLLP flags. 
  * Messages are deliniated by the MSH segment.
  * 
- * Emits 'hl7' when a message has been read
- * Emits 'end' when the file is finished being read
+ * @emits hl7 'hl7' when a message has been read
+ * 
+ * @emits end 'end' when the file is finished being read
  * 
  * @example
  * const file = new FlatFile('../data/OB_FileService_ORU.txt', '\n');
+ * 
  * file.on('hl7',(message: string)=>{ ... });
+ * 
  * file.on('end',() => { console.log("Finished Reading File")});
+ * 
  * file.start();
  */
 export class FlatFile extends EventEmitter {
